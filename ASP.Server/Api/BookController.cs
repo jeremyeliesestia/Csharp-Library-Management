@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ASP.Server.Database;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace ASP.Server.Api
 {
@@ -58,7 +59,26 @@ namespace ASP.Server.Api
         // Je vous montre comment faire la 1er, a vous de la compléter et de faire les autres !
         public ActionResult<List<Book>> GetBooks()
         {
-            throw new NotImplementedException("You have to do it your self");
+            return libraryDbContext.Books.ToList();
+            //throw new NotImplementedException("You have to do it your self");
+        }
+
+        public ActionResult<Book> GetBook()
+        {
+            return libraryDbContext.Books.First();
+            //throw new NotImplementedException("You have to do it your self");
+        }
+
+        public ActionResult<List<Genre>> GetGenres()
+        {
+            return libraryDbContext.Genre.ToList();
+            //throw new NotImplementedException("You have to do it your self");
+        }
+
+        public ActionResult<Genre> GetGenre()
+        {
+            return libraryDbContext.Genre.First();
+            //throw new NotImplementedException("You have to do it your self");
         }
 
     }
