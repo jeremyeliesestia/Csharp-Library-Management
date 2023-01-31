@@ -13,12 +13,26 @@ namespace ASP.Server.Controllers
     {
         [Required]
         [Display(Name = "Nom")]
-        public String Name { get; set; }
+        public String Nom { get; set; }
 
         // Ajouter ici tous les champ que l'utilisateur devra remplir pour ajouter un livre
+        //Louis---------------------------------------------
+        
+        public String Authors { get; set; }
+
+        //authors du livre ajouté par l'utilisateur
+        
+        public Double Prix { get; set; }
+
+        //price du livre ajouté par l'utilisateur
+       
+        public String Description { get; set; }
+        //Description du livre ajouté par l'utilisateur
+        //Louis---------------------------------------------
+
 
         // Liste des genres séléctionné par l'utilisateur
-        public List<int> Genres { get; set; }
+        public List<int> Genres { get; set; } = new();
 
         // Liste des genres a afficher à l'utilisateur
         public IEnumerable<Genre> AllGenres { get; init;  }
@@ -36,8 +50,10 @@ namespace ASP.Server.Controllers
         public ActionResult<IEnumerable<Book>> List()
         {
             // récupérer les livres dans la base de donées pour qu'elle puisse être affiché
-            List<Book> ListBooks = null;
-            return View(ListBooks);
+            //-----------------------
+           List<Book> books = libraryDbContext.Books.ToList();
+           return View(books);
+            //Louis-----------------------
         }
 
         public ActionResult<CreateBookModel> Create(CreateBookModel book)
@@ -46,14 +62,14 @@ namespace ASP.Server.Controllers
             if (ModelState.IsValid)
             {
                 // Il faut intéroger la base pour récupérer l'ensemble des objets genre qui correspond aux id dans CreateBookModel.Genres
-                List<Genre> genres = null;
+                List<Genre> genres = libraryDbContext.Genre.ToList();
                 // Completer la création du livre avec toute les information nécéssaire que vous aurez ajoutez, et metter la liste des gener récupéré de la base aussi
-                libraryDbContext.Add(new Book() {  });
+                libraryDbContext.Add(new Book() {});
                 libraryDbContext.SaveChanges();
             }
 
             // Il faut interoger la base pour récupérer tous les genres, pour que l'utilisateur puisse les slécétionné
-            return View(new CreateBookModel() { AllGenres = null } );
+            return View(new CreateBookModel() { AllGenres = libraryDbContext.Genre.ToList() } );
         }
     }
 }
