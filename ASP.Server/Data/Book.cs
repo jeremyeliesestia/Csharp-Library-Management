@@ -14,7 +14,6 @@ namespace ASP.Server.Model
         public int Id { get; set; }
 
         //-------------------------------------------------------
-
         public string Nom { get; set; }
         public string Authors { get; set; }
         public double Prix { get; set; }

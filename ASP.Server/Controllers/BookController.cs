@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace ASP.Server.Controllers
 {
@@ -29,9 +31,7 @@ namespace ASP.Server.Controllers
        
         public String Description { get; set; }
         //Description du livre ajouté par l'utilisateur
-        //Louis---------------------------------------------
-
-        //---------------------------------------------------
+       
         // Liste des genres séléctionné par l'utilisateur
         public List<int> Genres { get; set; }
 
@@ -63,9 +63,9 @@ namespace ASP.Server.Controllers
             if (ModelState.IsValid)
             {
                 // Il faut intéroger la base pour récupérer l'ensemble des objets genre qui correspond aux id dans CreateBookModel.Genres
-                List<Genre> genres = libraryDbContext.Genre.ToList();
+                List<Genre> genres = libraryDbContext.Genre.Where(genre => book.Genres.Contains(genre.Id)).ToList();
                 // Completer la création du livre avec toute les information nécéssaire que vous aurez ajoutez, et metter la liste des gener récupéré de la base aussi
-                libraryDbContext.Add(new Book() {});
+                libraryDbContext.Add(new Book() { Authors = book.Authors, Contenu = book.Description, Nom = book.Nom, Prix=book.Prix , Genre= genres }); ;
                 libraryDbContext.SaveChanges();
             }
 
