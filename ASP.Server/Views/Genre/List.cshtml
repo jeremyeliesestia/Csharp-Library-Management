@@ -5,16 +5,80 @@
     ViewData["Title"] = "Liste Genre";
 }
 
+<style>
+
+.row{
+    display: block;
+
+}
+
+.element-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    margin-bottom:25px;
+    height: 50px;
+}
+
+h1{
+    font-family: 'Century Gothic';
+    letter-spacing: 2px;
+    margin: 45px;
+}
+
+h3 {
+    background-color: #e9e9e9;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 30px;
+    font-family: 'Century Gothic';
+    font-size: 23px
+    
+}
+
+p{
+
+    font-family: 'Century Gothic';
+    margin: 0px;
+    padding: 0px;
+
+}
+
+</style>
+
 <div class="listeGenres">
-    <h1>Liste des Genres:</h1>
-    <!-- la liste des genres est dans la variable Model qui est typé en ligne 3, elle correspond à la variable xxx dans View(xxx) du controller -->
-    @foreach (var genre in Model)
-    {
-        <div>
-            <h1>Nom: @(genre.Nom)</h1>
-            <h2>Identifiant: @(genre.Id)</h2>
+
+    <div style="text-align: center;">
+        <h1>LISTE DES GENRES</h1>
+    </div>
+
+    <div class="row">
+
+        <div class="element-list">
+            <h3>IDENTIFIANT</h3>
+            <h3>NOM</h3>
+            <h3>LIVRE ASSOCIES</h3>
         </div>
-    }
+
+        @foreach (var genre in Model)
+        {
+            <div class="element-list">
+                <P>@(genre.Id)</P>
+                <P>@(genre.Nom)</P>
+                <div>
+                    @foreach (var book in genre.Book)
+                    {
+                        <p>@book.Nom</p>
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+
 </div>
 
 

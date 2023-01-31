@@ -4,28 +4,77 @@
     ViewData["Title"] = "Add a Genre";
 }
 <style>
-    .input-group {
-        margin-top: 10px;
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
+.input-item {
+    font-family: 'Century Gothic';
+    font-size: 25px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+}
 
-    input, textarea, select {
-        flex-basis: 85%;
-    }
+input, textarea, select {
+    flex-basis: 50%;
+    border: none;
+    background-color: #e9e9e9;
+}
 
-    label {
-        flex-basis: 10%;
-    }
+label {
+    flex-basis: 10%;
+}
+
+.input-Title {
+    font-family: 'Century Gothic';
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    font-family: 'Century Gothic';
+    letter-spacing: 2px;
+    margin: 45px;
+}
+
+.input-Text {
+    font-family: 'Century Gothic';
+    font-size: 15px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.contouring {
+    padding-left: 10px;
+    background-color: #e9e9e9;
+    border-radius: 50px;
+    width: 250px;
+    height: 40px;
+}
 </style>
 
-<!-- Voici une facon de faire, mais ce n'est pas la seul, a vous de jouer ! -->
-<form asp-controller="genre" asp-action="Create">
-    <div class="input-group">
-        <label asp-for="Nom"></label>
-        <input asp-for="Nom" />
+<div>
+
+    <div style="text-align: center;">
+        <h1>AJOUTER UN NOUVEAU GENRE</h1>
     </div>
 
-    <input type="submit" value="Add" style="width: 100%; margin-top: 50px" />
-</form>
+</div>
+
+<div style="width:50%;margin:auto;">
+    
+    <form asp-controller="genre" asp-action="Create">
+
+    <div class="input-item">
+            <label asp-for="Nom" class="input-Title"></label>
+        <div class="contouring">
+        <input asp-for="Nom" class="input-Text" />
+        </div>
+    </div>
+    
+    <div style="display: flex;width: 100%;height: 200%;justify-content: space-around;margin-top: 30px;">
+            <input type="submit" value="Ajouter un genre" style="font-family: 'Century Gothic';background-color: #f7c7f9;Width: 100px;border: none;border-radius: 50px;height: 35px;" />
+    </div>
+
+    </form>
+
+</div>

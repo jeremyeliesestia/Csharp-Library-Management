@@ -6,38 +6,70 @@
 
 <style>
 
-.tete-list{
-    display:flex;
-    justify-content:space-between;
+.row{
+    display: block;
+
 }
 
 .element-list{
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    margin-bottom:25px;
+    height: 50px;
+}
+
+h1{
+    font-family: 'Century Gothic';
+    letter-spacing: 2px;
+    margin: 45px;
+}
+
+h3 {
+    background-color: #e9e9e9;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 30px;
+    font-family: 'Century Gothic';
+    font-size: 23px
+    
+}
+
+p{
+
+    font-family: 'Century Gothic';
+    margin: 0px;
+    padding: 0px;
+
 }
 
 </style>
 
+<div>
 
-<div class="Books">
-    <h1>Liste des livres:</h1>
-
-
-    <div class="tete-list">
-        <h3>NOM</h3>
-        <h3>IDENTIFIANT</h3>
-        <h3>AUTEUR</h3>
-        <h3>PRIX</h3>
-        <h3>GENRES</h3>
-        <h3>SUPPRESSION</h3>
+    <div style="text-align: center;">
+        <h1>LISTE DES LIVRES</h1>
     </div>
 
+    <div class="row">
+   
 
-    @foreach (var book in Model) 
-    //<!-- la liste des genres est dans la variable Model qui est t
-    {
+        <div class="element-list">
+            <h3>NOM</h3>
+            <h3>IDENTIFIANT</h3>
+            <h3>AUTEUR</h3>
+            <h3>PRIX</h3>
+            <h3>GENRES</h3>
+            <h3>SUPPRESSION</h3>
+        </div>
 
-        <div> 
+
+        @foreach (var book in Model) 
+        //<!-- la liste des genres est dans la variable Model qui est t
+        {
 
             <div class="element-list">
                 <p>@(book.Nom)</p>
@@ -45,20 +77,21 @@
                 <p>@(book.Authors)</p>
                 <p>@(book.Prix)</p>
             
-                @foreach (var gender in book.Genre)
-                {
-                    <p>@gender.Nom</p>
-                }
-
+                <div>
+                    @foreach (var gender in book.Genre)
+                    {
+                        <p>@gender.Nom</p>
+                    }
+                </div>
                 <form asp-action="Delete" asp-controller="book">
 
-                    <input type="submit" value="Delete" style="width: 100%; margin-top: 50px" />
+                    <input type="submit" value="Delete" style=" background-color: #f9c7c7;Width: 100px;border: none;border-radius: 50px;width: 100px;height: 25px;" />
                     <input type="hidden" value="@book.Id" name="IdDeleted"/>
 
                 </form>
             </div>
-        </div>
-        
-    }
-</div>
+        }
 
+    </div>
+
+</div>
