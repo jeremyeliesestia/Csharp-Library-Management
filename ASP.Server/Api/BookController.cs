@@ -8,6 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using ASP.Server.Database;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using DocumentFormat.OpenXml.Bibliography;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace ASP.Server.Api
 {
@@ -60,8 +63,22 @@ namespace ASP.Server.Api
 
 
         //---------------------------------------------------------------------------------------
-        public ActionResult<List<Book>> GetBooks(List<int> Id_Genre = null, int offset = 0, int limit = 10)
+
+
+        public class BookWrapper
         {
+            public Book BW { get; init; }
+            public int Id { get { return BW.Id; } }
+            public string Nom { get { return BW.Nom; } }
+            public string Authors { get { return BW.Authors; } }
+            public double Prix { get { return BW.Prix; } }
+            public List<Genre> Genre { get { return BW.Genre; } }
+        }
+
+
+        public ActionResult<List<BookWrapper>> GetBooks(List<int> Id_Genre = null, int offset = 0, int limit = 10)
+        {
+
 
             IQueryable<Book> bookQuery = libraryDbContext.Books.Skip(offset).Take(limit);
 
@@ -70,18 +87,16 @@ namespace ASP.Server.Api
                 bookQuery = bookQuery.Include(Book => Book.Genre).Where(Books => Books.Genre.Intersect(libraryDbContext.Genre.Where(Genre => Id_Genre.Contains(Genre.Id))).Any());
             }
 
-            var books = bookQuery.ToList();
-            Console.WriteLine(books);
 
-            return Ok(books);
+            return bookQuery.Select(book => new BookWrapper() {BW=book}).ToList();
+
 
             //throw new NotImplementedException("You have to do it your self"); .FirstOrDefault(Book => Book.Id == numero_livre) 
         }
 
         public ActionResult<Book> GetBook(int numero_livre)
         {
-            var book = libraryDbContext.Books.Include(Book => Book.Genre);
-            book.FirstOrDefault(Book => Book.Id == numero_livre);
+            var book = libraryDbContext.Books.Include(Book => Book.Genre).FirstOrDefault(Book => Book.Id == numero_livre);
 
             if (book != null)
             {
