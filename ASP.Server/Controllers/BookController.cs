@@ -15,6 +15,7 @@ namespace ASP.Server.Controllers
         [Display(Name = "Nom")]
         public String Nom { get; set; }
 
+        //---------------------------------------------------
         // Ajouter ici tous les champ que l'utilisateur devra remplir pour ajouter un livre
         //Louis---------------------------------------------
         
@@ -30,9 +31,9 @@ namespace ASP.Server.Controllers
         //Description du livre ajouté par l'utilisateur
         //Louis---------------------------------------------
 
-
+        //---------------------------------------------------
         // Liste des genres séléctionné par l'utilisateur
-        public List<int> Genres { get; set; } = new();
+        public List<int> Genres { get; set; }
 
         // Liste des genres a afficher à l'utilisateur
         public IEnumerable<Genre> AllGenres { get; init;  }
@@ -51,7 +52,7 @@ namespace ASP.Server.Controllers
         {
             // récupérer les livres dans la base de donées pour qu'elle puisse être affiché
             //-----------------------
-           List<Book> books = libraryDbContext.Books.ToList();
+           List<Book> books = libraryDbContext.Books.Include(Book => Book.Genre).ToList();
            return View(books);
             //Louis-----------------------
         }
@@ -71,5 +72,7 @@ namespace ASP.Server.Controllers
             // Il faut interoger la base pour récupérer tous les genres, pour que l'utilisateur puisse les slécétionné
             return View(new CreateBookModel() { AllGenres = libraryDbContext.Genre.ToList() } );
         }
+
+
     }
 }
