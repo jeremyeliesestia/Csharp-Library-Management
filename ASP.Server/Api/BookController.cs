@@ -71,7 +71,7 @@ namespace ASP.Server.Api
 
         public ActionResult<List<Genre>> GetGenres()
         {
-            return libraryDbContext.Genre.ToList();
+            return libraryDbContext.Genre.ToList();  
             //throw new NotImplementedException("You have to do it your self");
         }
 
