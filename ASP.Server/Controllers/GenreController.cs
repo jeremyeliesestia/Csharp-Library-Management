@@ -13,10 +13,6 @@ namespace ASP.Server.Controllers
 {
 
 
-
-
-
-
     public class CreateGenreModel
     {
         [Required]
@@ -27,12 +23,6 @@ namespace ASP.Server.Controllers
 
 
     }
-
-
-
-
-
-
 
 
     public class GenreController : Controller

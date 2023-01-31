@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Runtime.CompilerServices;
 
 namespace ASP.Server.Controllers
 {
@@ -71,6 +72,16 @@ namespace ASP.Server.Controllers
 
             // Il faut interoger la base pour récupérer tous les genres, pour que l'utilisateur puisse les slécétionné
             return View(new CreateBookModel() { AllGenres = libraryDbContext.Genre.ToList() } );
+        }
+
+        public ActionResult Delete(int IdDeleted)
+        {
+
+            var ToDelete = libraryDbContext.Books.Where(book => book.Id == IdDeleted);
+            libraryDbContext.Books.RemoveRange(ToDelete);
+            libraryDbContext.SaveChanges();
+
+            return RedirectToAction(nameof(List));
         }
 
 

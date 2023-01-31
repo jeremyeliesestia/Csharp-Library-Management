@@ -67,7 +67,7 @@ namespace ASP.Server.Api
 
         public class BookWrapper
         {
-            public Book BW { get; init; }
+            public Book BW { private get;  init; }
             public int Id { get { return BW.Id; } }
             public string Nom { get { return BW.Nom; } }
             public string Authors { get { return BW.Authors; } }
@@ -76,7 +76,7 @@ namespace ASP.Server.Api
         }
 
 
-        public ActionResult<List<BookWrapper>> GetBooks(List<int> Id_Genre = null, int offset = 0, int limit = 10)
+        public ActionResult<List<BookWrapper>> GetBooks([FromQuery] List<int> Id_Genre = null, int offset = 0, int limit = 10)
         {
 
 
