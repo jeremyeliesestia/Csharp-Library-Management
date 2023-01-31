@@ -10,6 +10,10 @@
     <!-- la liste des genres est dans la variable Model qui est typé en ligne 3, elle correspond à la variable xxx dans View(xxx) du controller -->
     @foreach (var genre in Model)
     {
+        <div>
+            <h1>Nom: @(genre.Nom)</h1>
+            <h2>Identifiant: @(genre.Id)</h2>
+        </div>
     }
 </div>
 
