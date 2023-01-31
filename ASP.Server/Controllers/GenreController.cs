@@ -13,10 +13,6 @@ namespace ASP.Server.Controllers
 {
 
 
-
-
-
-
     public class CreateGenreModel
     {
         [Required]
@@ -27,12 +23,6 @@ namespace ASP.Server.Controllers
 
 
     }
-
-
-
-
-
-
 
 
     public class GenreController : Controller
@@ -52,5 +42,21 @@ namespace ASP.Server.Controllers
         }
 
         // A vous de faire comme BookController.List mais pour les genres !
+
+        public ActionResult<CreateGenreModel> Create(CreateGenreModel genre)
+        {
+            // Le IsValid est True uniquement si tous les champs de CreateGenreModel marqués Required sont remplis
+            if (ModelState.IsValid)
+            {
+                //On interroge la liste des genre existant pour pour éviter les doublons
+                if (!libraryDbContext.Genre.Any(g => g.Nom == genre.Nom))
+                {
+                    // On complète la création du genre avec son nom qu'on aura ajouté
+                    libraryDbContext.Add(new Genre() { Nom = genre.Nom });
+                    libraryDbContext.SaveChanges();
+                } 
+            }
+            return View(genre);
+        }
     }
 }
