@@ -57,28 +57,76 @@ namespace ASP.Server.Api
 
 
         // Je vous montre comment faire la 1er, a vous de la compléter et de faire les autres !
-        public ActionResult<List<Book>> GetBooks()
+
+
+        //---------------------------------------------------------------------------------------
+        public ActionResult<List<Book>> GetBooks(List<int> Id_Genre = null, int? offset = 0, int? limit = 10)
         {
-            return libraryDbContext.Books.ToList();
+
+            IQueryable<Book> bookQuery = libraryDbContext.Books;
+
+            if (Id_Genre != null && Id_Genre.Any())
+            {
+                bookQuery = bookQuery.Where(Books => Id_Genre.Intersect(Books.Genre.Select(Genre => Genre.Id)).Count() >= 1);
+            }
+
+            var books = bookQuery.ToList();
+
+            //if (books.Any())
+            //{
+                return Ok(books);
+            //}
+
+            
             //throw new NotImplementedException("You have to do it your self");
         }
 
-        public ActionResult<Book> GetBook()
+        public ActionResult<Book> GetBook(int numero_livre)
         {
-            return libraryDbContext.Books.First();
+            var book = libraryDbContext.Books.Include(Book => Book.Genre).FirstOrDefault(Book => Book.Id == numero_livre) ;
+
+            if (book != null)
+            {
+                return Ok(book);
+            }
+            else
+            {
+                return NotFound(new { message = "Le livre demandé est introuvable" });
+            }
             //throw new NotImplementedException("You have to do it your self");
+
         }
 
         public ActionResult<List<Genre>> GetGenres()
         {
-            return libraryDbContext.Genre.ToList();
+            var genres = libraryDbContext.Genre.ToList();
+
+            if (genres != null)
+            {
+                return Ok(genres);
+            }
+            else
+            {
+                return NotFound(new { message = "La liste de genres n'existe pas" });
+            }
             //throw new NotImplementedException("You have to do it your self");
         }
 
-        public ActionResult<Genre> GetGenre()
+        public ActionResult<Genre> GetGenre(int numero_genre)
         {
-            return libraryDbContext.Genre.First();
-            //throw new NotImplementedException("You have to do it your self");
+            var genre = libraryDbContext.Genre.FirstOrDefault(Genre => Genre.Id == numero_genre);
+
+            if (genre != null)
+            {
+                return Ok(genre);
+            }
+            else
+            {
+                return NotFound(new { message = "Le genre demandé est introuvable" });
+                //throw new NotImplementedException("You have to do it your self");
+            }
+
+            //---------------------------------------------------------------------------------------
         }
 
     }
