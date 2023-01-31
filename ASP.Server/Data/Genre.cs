@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,6 +16,7 @@ namespace ASP.Server.Model
         //----------------------------------------------------
         public string Nom { get; set; }
 
+        [JsonIgnore]
         public List<Book> Book { get; set; }
 
         //----------------------------------------------------

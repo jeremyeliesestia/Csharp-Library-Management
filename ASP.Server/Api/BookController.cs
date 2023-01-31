@@ -60,30 +60,28 @@ namespace ASP.Server.Api
 
 
         //---------------------------------------------------------------------------------------
-        public ActionResult<List<Book>> GetBooks(List<int> Id_Genre = null, int? offset = 0, int? limit = 10)
+        public ActionResult<List<Book>> GetBooks(List<int> Id_Genre = null, int offset = 0, int limit = 10)
         {
 
-            IQueryable<Book> bookQuery = libraryDbContext.Books;
+            IQueryable<Book> bookQuery = libraryDbContext.Books.Skip(offset).Take(limit);
 
             if (Id_Genre != null && Id_Genre.Any())
             {
-                bookQuery = bookQuery.Where(Books => Id_Genre.Intersect(Books.Genre.Select(Genre => Genre.Id)).Count() >= 1);
+                bookQuery = bookQuery.Include(Book => Book.Genre).Where(Books => Books.Genre.Intersect(libraryDbContext.Genre.Where(Genre => Id_Genre.Contains(Genre.Id))).Any());
             }
 
             var books = bookQuery.ToList();
+            Console.WriteLine(books);
 
-            //if (books.Any())
-            //{
-                return Ok(books);
-            //}
+            return Ok(books);
 
-            
-            //throw new NotImplementedException("You have to do it your self");
+            //throw new NotImplementedException("You have to do it your self"); .FirstOrDefault(Book => Book.Id == numero_livre) 
         }
 
         public ActionResult<Book> GetBook(int numero_livre)
         {
-            var book = libraryDbContext.Books.Include(Book => Book.Genre).FirstOrDefault(Book => Book.Id == numero_livre) ;
+            var book = libraryDbContext.Books.Include(Book => Book.Genre);
+            book.FirstOrDefault(Book => Book.Id == numero_livre);
 
             if (book != null)
             {
