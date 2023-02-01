@@ -1,0 +1,55 @@
+﻿@using ASP.Server.Controllers
+@model CreateBookModel
+@{
+    ViewData["Title"] = "Update a book";
+}
+<style>
+    .input-group {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    input, textarea, select {
+        flex-basis: 85%;
+    }
+
+    label {
+        flex-basis: 10%;
+    }
+</style>
+
+
+<!-- Voici une facon de faire, mais ce n'est pas la seul, a vous de jouer ! -->
+<form asp-controller="Book" asp-action="Update">
+
+    <div class="input-group">
+        <label asp-for="Nom"></label>
+        <input asp-for="Nom" />
+    </div>
+
+    <div class="input-group">
+        <label asp-for="Authors"></label>
+        <input asp-for="Authors" />
+    </div>
+
+    <div class="input-group">
+        <label asp-for="Prix"></label>
+        <input asp-for="Prix" />
+    </div>
+
+    <div class="input-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+    </div>
+
+    <div class="input-group">
+        <label asp-for="Genres"></label>
+        <!--Si la page rend une erreur a cette ligne, c'est que vous n'avez pas envoyé la liste des genres dans le Controller !!! ! -->
+        <select asp-for="Genres" asp-items="@(new SelectList(Model.AllGenres,"Id","Nom"))">
+        </select>
+    </div>
+    <input type="submit" value="Modifier le livre" style="width: 100%; margin-top: 50px" />
+    <input asp-for=Id type="hidden" value="@Model.Id"/>
+</form>

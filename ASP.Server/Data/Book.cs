@@ -12,8 +12,6 @@ namespace ASP.Server.Model
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
-
-        //-------------------------------------------------------
         public string Nom { get; set; }
         public string Authors { get; set; }
         public double Prix { get; set; }

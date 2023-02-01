@@ -56,6 +56,13 @@
                     <input type="hidden" value="@book.Id" name="IdDeleted"/>
 
                 </form>
+                <form asp-action="Update" asp-controller="book">
+
+                    <input type="submit" value="Update" style="width: 100%; margin-top: 50px" />
+                    <input type="hidden" value="@book.Id" name="IdUpdate"/>
+                 
+                   
+                </form>
             </div>
         </div>
         
