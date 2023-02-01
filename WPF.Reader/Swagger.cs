@@ -68,12 +68,12 @@ namespace WPF.Reader.Api
         /// 
         /// </summary>
         /// <exception cref="WPF.Reader.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="idGenre"> (optional)</param>
         /// <param name="offset"> (optional, default to 0)</param>
         /// <param name="limit"> (optional, default to 10)</param>
-        /// <param name="idGenre"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>List&lt;Book&gt;</returns>
-        List<Book> BookGetBooks(int? offset = default(int?), int? limit = default(int?), List<int> idGenre = default(List<int>), int operationIndex = 0);
+        /// <returns>List&lt;BookWrapper&gt;</returns>
+        List<BookWrapper> BookGetBooks(List<int> idGenre = default(List<int>), int? offset = default(int?), int? limit = default(int?), int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -81,12 +81,12 @@ namespace WPF.Reader.Api
         /// 
         /// </remarks>
         /// <exception cref="WPF.Reader.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="idGenre"> (optional)</param>
         /// <param name="offset"> (optional, default to 0)</param>
         /// <param name="limit"> (optional, default to 10)</param>
-        /// <param name="idGenre"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of List&lt;Book&gt;</returns>
-        ApiResponse<List<Book>> BookGetBooksWithHttpInfo(int? offset = default(int?), int? limit = default(int?), List<int> idGenre = default(List<int>), int operationIndex = 0);
+        /// <returns>ApiResponse of List&lt;BookWrapper&gt;</returns>
+        ApiResponse<List<BookWrapper>> BookGetBooksWithHttpInfo(List<int> idGenre = default(List<int>), int? offset = default(int?), int? limit = default(int?), int operationIndex = 0);
         /// <summary>
         /// 
         /// </summary>
@@ -162,13 +162,13 @@ namespace WPF.Reader.Api
         /// 
         /// </remarks>
         /// <exception cref="WPF.Reader.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="idGenre"> (optional)</param>
         /// <param name="offset"> (optional, default to 0)</param>
         /// <param name="limit"> (optional, default to 10)</param>
-        /// <param name="idGenre"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of List&lt;Book&gt;</returns>
-        System.Threading.Tasks.Task<List<Book>> BookGetBooksAsync(int? offset = default(int?), int? limit = default(int?), List<int> idGenre = default(List<int>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of List&lt;BookWrapper&gt;</returns>
+        System.Threading.Tasks.Task<List<BookWrapper>> BookGetBooksAsync(List<int> idGenre = default(List<int>), int? offset = default(int?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -176,13 +176,13 @@ namespace WPF.Reader.Api
         /// 
         /// </remarks>
         /// <exception cref="WPF.Reader.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="idGenre"> (optional)</param>
         /// <param name="offset"> (optional, default to 0)</param>
         /// <param name="limit"> (optional, default to 10)</param>
-        /// <param name="idGenre"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (List&lt;Book&gt;)</returns>
-        System.Threading.Tasks.Task<ApiResponse<List<Book>>> BookGetBooksWithHttpInfoAsync(int? offset = default(int?), int? limit = default(int?), List<int> idGenre = default(List<int>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of ApiResponse (List&lt;BookWrapper&gt;)</returns>
+        System.Threading.Tasks.Task<ApiResponse<List<BookWrapper>>> BookGetBooksWithHttpInfoAsync(List<int> idGenre = default(List<int>), int? offset = default(int?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// 
         /// </summary>
@@ -456,33 +456,29 @@ namespace WPF.Reader.Api
         ///  
         /// </summary>
         /// <exception cref="WPF.Reader.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="idGenre"> (optional)</param>
         /// <param name="offset"> (optional, default to 0)</param>
         /// <param name="limit"> (optional, default to 10)</param>
-        /// <param name="idGenre"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>List&lt;Book&gt;</returns>
-        public List<Book> BookGetBooks(int? offset = default(int?), int? limit = default(int?), List<int> idGenre = default(List<int>), int operationIndex = 0)
+        /// <returns>List&lt;BookWrapper&gt;</returns>
+        public List<BookWrapper> BookGetBooks(List<int> idGenre = default(List<int>), int? offset = default(int?), int? limit = default(int?), int operationIndex = 0)
         {
-            WPF.Reader.Client.ApiResponse<List<Book>> localVarResponse = BookGetBooksWithHttpInfo(offset, limit, idGenre);
+            WPF.Reader.Client.ApiResponse<List<BookWrapper>> localVarResponse = BookGetBooksWithHttpInfo(idGenre, offset, limit);
             return localVarResponse.Data;
         }
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="WPF.Reader.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="idGenre"> (optional)</param>
         /// <param name="offset"> (optional, default to 0)</param>
         /// <param name="limit"> (optional, default to 10)</param>
-        /// <param name="idGenre"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of List&lt;Book&gt;</returns>
-        public WPF.Reader.Client.ApiResponse<List<Book>> BookGetBooksWithHttpInfo(int? offset = default(int?), int? limit = default(int?), List<int> idGenre = default(List<int>), int operationIndex = 0)
+        /// <returns>ApiResponse of List&lt;BookWrapper&gt;</returns>
+        public WPF.Reader.Client.ApiResponse<List<BookWrapper>> BookGetBooksWithHttpInfo(List<int> idGenre = default(List<int>), int? offset = default(int?), int? limit = default(int?), int operationIndex = 0)
         {
             WPF.Reader.Client.RequestOptions localVarRequestOptions = new WPF.Reader.Client.RequestOptions();
             string[] _contentTypes = new string[] {
-                "application/json-patch+json",
-                "application/json",
-                "text/json",
-                "application/*+json"
             };
             // to determine the Accept header
             string[] _accepts = new string[] {
@@ -500,6 +496,10 @@ namespace WPF.Reader.Api
             {
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
+            if (idGenre != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(WPF.Reader.Client.ClientUtils.ParameterToMultiMap("multi", "Id_Genre", idGenre));
+            }
             if (offset != null)
             {
                 localVarRequestOptions.QueryParameters.Add(WPF.Reader.Client.ClientUtils.ParameterToMultiMap("", "offset", offset));
@@ -508,11 +508,10 @@ namespace WPF.Reader.Api
             {
                 localVarRequestOptions.QueryParameters.Add(WPF.Reader.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            localVarRequestOptions.Data = idGenre;
             localVarRequestOptions.Operation = "BookApi.BookGetBooks";
             localVarRequestOptions.OperationIndex = operationIndex;
             // make the HTTP request
-            var localVarResponse = this.Client.Post<List<Book>>("/api/Book/GetBooks", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<List<BookWrapper>>("/api/Book/GetBooks", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("BookGetBooks", localVarResponse);
@@ -527,35 +526,31 @@ namespace WPF.Reader.Api
         ///  
         /// </summary>
         /// <exception cref="WPF.Reader.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="idGenre"> (optional)</param>
         /// <param name="offset"> (optional, default to 0)</param>
         /// <param name="limit"> (optional, default to 10)</param>
-        /// <param name="idGenre"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of List&lt;Book&gt;</returns>
-        public async System.Threading.Tasks.Task<List<Book>> BookGetBooksAsync(int? offset = default(int?), int? limit = default(int?), List<int> idGenre = default(List<int>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of List&lt;BookWrapper&gt;</returns>
+        public async System.Threading.Tasks.Task<List<BookWrapper>> BookGetBooksAsync(List<int> idGenre = default(List<int>), int? offset = default(int?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            WPF.Reader.Client.ApiResponse<List<Book>> localVarResponse = await BookGetBooksWithHttpInfoAsync(offset, limit, idGenre, operationIndex, cancellationToken).ConfigureAwait(false);
+            WPF.Reader.Client.ApiResponse<List<BookWrapper>> localVarResponse = await BookGetBooksWithHttpInfoAsync(idGenre, offset, limit, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
         /// <summary>
         ///  
         /// </summary>
         /// <exception cref="WPF.Reader.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="idGenre"> (optional)</param>
         /// <param name="offset"> (optional, default to 0)</param>
         /// <param name="limit"> (optional, default to 10)</param>
-        /// <param name="idGenre"> (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (List&lt;Book&gt;)</returns>
-        public async System.Threading.Tasks.Task<WPF.Reader.Client.ApiResponse<List<Book>>> BookGetBooksWithHttpInfoAsync(int? offset = default(int?), int? limit = default(int?), List<int> idGenre = default(List<int>), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (List&lt;BookWrapper&gt;)</returns>
+        public async System.Threading.Tasks.Task<WPF.Reader.Client.ApiResponse<List<BookWrapper>>> BookGetBooksWithHttpInfoAsync(List<int> idGenre = default(List<int>), int? offset = default(int?), int? limit = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             WPF.Reader.Client.RequestOptions localVarRequestOptions = new WPF.Reader.Client.RequestOptions();
             string[] _contentTypes = new string[] {
-                "application/json-patch+json", 
-                "application/json", 
-                "text/json", 
-                "application/*+json"
             };
             // to determine the Accept header
             string[] _accepts = new string[] {
@@ -573,6 +568,10 @@ namespace WPF.Reader.Api
             {
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
+            if (idGenre != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(WPF.Reader.Client.ClientUtils.ParameterToMultiMap("multi", "Id_Genre", idGenre));
+            }
             if (offset != null)
             {
                 localVarRequestOptions.QueryParameters.Add(WPF.Reader.Client.ClientUtils.ParameterToMultiMap("", "offset", offset));
@@ -581,11 +580,10 @@ namespace WPF.Reader.Api
             {
                 localVarRequestOptions.QueryParameters.Add(WPF.Reader.Client.ClientUtils.ParameterToMultiMap("", "limit", limit));
             }
-            localVarRequestOptions.Data = idGenre;
             localVarRequestOptions.Operation = "BookApi.BookGetBooks";
             localVarRequestOptions.OperationIndex = operationIndex;
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.PostAsync<List<Book>>("/api/Book/GetBooks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<List<BookWrapper>>("/api/Book/GetBooks", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("BookGetBooks", localVarResponse);
@@ -3489,6 +3487,192 @@ namespace WPF.Reader.Model
                 {
                     hashCode = (hashCode * 59) + this.Contenu.GetHashCode();
                 }
+                if (this.Genre != null)
+                {
+                    hashCode = (hashCode * 59) + this.Genre.GetHashCode();
+                }
+                return hashCode;
+            }
+        }
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        {
+            yield break;
+        }
+    }
+}
+/*
+ * My Title
+ *
+ * No description provided (generated by Openapi Generator https://github.com/openapitools/openapi-generator)
+ *
+ * The version of the OpenAPI document: 1.0.0
+ * Generated by: https://github.com/openapitools/openapi-generator.git
+ */
+namespace WPF.Reader.Model
+{
+    /// <summary>
+    /// BookWrapper
+    /// </summary>
+    [DataContract(Name = "BookWrapper")]
+    public partial class BookWrapper : IEquatable<BookWrapper>, IValidatableObject
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BookWrapper" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected BookWrapper() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BookWrapper" /> class.
+        /// </summary>
+        /// <param name="bw">bw.</param>
+        /// <param name="id">id (required).</param>
+        /// <param name="nom">nom.</param>
+        /// <param name="authors">authors.</param>
+        /// <param name="prix">prix (required).</param>
+        /// <param name="genre">genre.</param>
+        public BookWrapper(Book bw = default(Book), int id = default(int), string nom = default(string), string authors = default(string), double prix = default(double), List<Genre> genre = default(List<Genre>))
+        {
+            this.Id = id;
+            this.Prix = prix;
+            this.Bw = bw;
+            this.Nom = nom;
+            this.Authors = authors;
+            this.Genre = genre;
+        }
+        /// <summary>
+        /// Gets or Sets Bw
+        /// </summary>
+        [DataMember(Name = "bw", EmitDefaultValue = true)]
+        public Book Bw { get; set; }
+        /// <summary>
+        /// Gets or Sets Id
+        /// </summary>
+        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = true)]
+        public int Id { get; set; }
+        /// <summary>
+        /// Gets or Sets Nom
+        /// </summary>
+        [DataMember(Name = "nom", EmitDefaultValue = true)]
+        public string Nom { get; set; }
+        /// <summary>
+        /// Gets or Sets Authors
+        /// </summary>
+        [DataMember(Name = "authors", EmitDefaultValue = true)]
+        public string Authors { get; set; }
+        /// <summary>
+        /// Gets or Sets Prix
+        /// </summary>
+        [DataMember(Name = "prix", IsRequired = true, EmitDefaultValue = true)]
+        public double Prix { get; set; }
+        /// <summary>
+        /// Gets or Sets Genre
+        /// </summary>
+        [DataMember(Name = "genre", EmitDefaultValue = true)]
+        public List<Genre> Genre { get; set; }
+        /// <summary>
+        /// Returns the string presentation of the object
+        /// </summary>
+        /// <returns>String presentation of the object</returns>
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("class BookWrapper {\n");
+            sb.Append("  Bw: ").Append(Bw).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Nom: ").Append(Nom).Append("\n");
+            sb.Append("  Authors: ").Append(Authors).Append("\n");
+            sb.Append("  Prix: ").Append(Prix).Append("\n");
+            sb.Append("  Genre: ").Append(Genre).Append("\n");
+            sb.Append("}\n");
+            return sb.ToString();
+        }
+        /// <summary>
+        /// Returns the JSON string presentation of the object
+        /// </summary>
+        /// <returns>JSON string presentation of the object</returns>
+        public virtual string ToJson()
+        {
+            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+        }
+        /// <summary>
+        /// Returns true if objects are equal
+        /// </summary>
+        /// <param name="input">Object to be compared</param>
+        /// <returns>Boolean</returns>
+        public override bool Equals(object input)
+        {
+            return this.Equals(input as BookWrapper);
+        }
+        /// <summary>
+        /// Returns true if BookWrapper instances are equal
+        /// </summary>
+        /// <param name="input">Instance of BookWrapper to be compared</param>
+        /// <returns>Boolean</returns>
+        public bool Equals(BookWrapper input)
+        {
+            if (input == null)
+            {
+                return false;
+            }
+            return 
+                (
+                    this.Bw == input.Bw ||
+                    (this.Bw != null &&
+                    this.Bw.Equals(input.Bw))
+                ) && 
+                (
+                    this.Id == input.Id ||
+                    this.Id.Equals(input.Id)
+                ) && 
+                (
+                    this.Nom == input.Nom ||
+                    (this.Nom != null &&
+                    this.Nom.Equals(input.Nom))
+                ) && 
+                (
+                    this.Authors == input.Authors ||
+                    (this.Authors != null &&
+                    this.Authors.Equals(input.Authors))
+                ) && 
+                (
+                    this.Prix == input.Prix ||
+                    this.Prix.Equals(input.Prix)
+                ) && 
+                (
+                    this.Genre == input.Genre ||
+                    this.Genre != null &&
+                    input.Genre != null &&
+                    this.Genre.SequenceEqual(input.Genre)
+                );
+        }
+        /// <summary>
+        /// Gets the hash code
+        /// </summary>
+        /// <returns>Hash code</returns>
+        public override int GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hashCode = 41;
+                if (this.Bw != null)
+                {
+                    hashCode = (hashCode * 59) + this.Bw.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                if (this.Nom != null)
+                {
+                    hashCode = (hashCode * 59) + this.Nom.GetHashCode();
+                }
+                if (this.Authors != null)
+                {
+                    hashCode = (hashCode * 59) + this.Authors.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Prix.GetHashCode();
                 if (this.Genre != null)
                 {
                     hashCode = (hashCode * 59) + this.Genre.GetHashCode();

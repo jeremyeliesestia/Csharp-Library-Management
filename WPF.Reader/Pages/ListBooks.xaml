@@ -10,7 +10,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ListBooks">
-    <StackPanel Background="#FF04BD4B">
+    <StackPanel Background="White">
 
         <!-- 
             A vous de créer la liste avec le bon binding. Une <ListBox> fera l'affaire 

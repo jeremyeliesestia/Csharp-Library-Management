@@ -7,22 +7,24 @@
         xmlns:model="clr-namespace:WPF.Reader.ViewModel" d:DataContext="{d:DesignInstance Type=model:Navigator, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         DataContext="{DynamicResource navigator}"
-    Title="MainWindow" Height="700" Width="800">
+    Title="THE DOCNET LIBRARY" Height="700" Width="800">
     <Window.Resources>
         <model:Navigator x:Key="navigator" />
     </Window.Resources>
     
     <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
 
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right" >
-            <Button Command="{Binding Path=GoToHome}" Width="50" Content="Accueil"/>
-            <Button Command="{Binding Path=GoToReadBook}" Width="50" Content="ReadABook"/>
-            <Button Command="{Binding Path=GoToListGenre}" Width="50" Content="GenreList"/>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="0,0,0,25" >
+            <Border BorderThickness="0" CornerRadius="15" Padding="30,5,30,5" Background="#FFA2EEFF">
+                <Button Command="{Binding GoToHome}" Width="50" Content="Accueil" Background="#FFA2EEFF" FontFamily="Century Gothic" BorderBrush="#FFA2EEFF"/>
+            </Border>
         </StackPanel>
-        
-        <Label DockPanel.Dock="Top" Content="Library system" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="30px"/>
-        
-        <ContentPresenter  Content="{Binding Path=Frame}" x:Name="Navigation"/>
+
+        <Border DockPanel.Dock="Top" BorderThickness="0" CornerRadius="30" HorizontalAlignment="Center" Margin="0,20,0,0" Padding="20,15,20,15" Background="#FFE9E9E9">
+            <Label DockPanel.Dock="Top" Content="LA BIBLIOTHEQUE DOTNET" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" FontFamily="Century Gothic" Padding="0,0,0,0" ScrollViewer.CanContentScroll="True"/>
+        </Border>
+
+        <ContentPresenter  Content="{Binding Path=Frame}" x:Name="Navigation" Margin="15,15,15,30"/>
     
     </DockPanel>
     

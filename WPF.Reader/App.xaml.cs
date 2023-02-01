@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using WPF.Reader.Model;
 using WPF.Reader.Service;
 using WPF.Reader.ViewModel;
 
@@ -26,7 +29,15 @@ namespace WPF.Reader
                 .AddSingleton(new LibraryService())
                 .BuildServiceProvider());
 
-            Ioc.Default.GetRequiredService<INavigationService>().Navigate<ListBook>();
+
+            new LibraryService().Init();
+
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                Ioc.Default.GetRequiredService<INavigationService>().Navigate<ListBook>();
+
+            }));
+
         }
     }
 }

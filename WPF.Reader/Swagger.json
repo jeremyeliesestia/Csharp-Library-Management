@@ -16,29 +16,22 @@
   ],
   "paths": {
     "/api/Book/GetBooks": {
-      "post": {
+      "get": {
         "tags": [
           "Book"
         ],
         "operationId": "Book_GetBooks",
-        "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
-        ],
         "parameters": [
           {
+            "type": "array",
             "name": "Id_Genre",
-            "in": "body",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "integer",
-                "format": "int32"
-              }
-            },
-            "x-nullable": false
+            "in": "query",
+            "collectionFormat": "multi",
+            "x-nullable": true,
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            }
           },
           {
             "type": "integer",
@@ -64,7 +57,7 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Book"
+                "$ref": "#/definitions/BookWrapper"
               }
             }
           }
@@ -145,6 +138,38 @@
     }
   },
   "definitions": {
+    "BookWrapper": {
+      "type": "object",
+      "required": [
+        "id",
+        "prix"
+      ],
+      "properties": {
+        "bw": {
+          "$ref": "#/definitions/Book"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "nom": {
+          "type": "string"
+        },
+        "authors": {
+          "type": "string"
+        },
+        "prix": {
+          "type": "number",
+          "format": "double"
+        },
+        "genre": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Genre"
+          }
+        }
+      }
+    },
     "Book": {
       "type": "object",
       "required": [

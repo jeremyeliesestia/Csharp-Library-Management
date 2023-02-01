@@ -12,7 +12,7 @@
     <Page.Resources>
         <vm:Navigator x:Key="navigator" />
     </Page.Resources>
-    <Grid Background="#FFB7B82D">
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
             <RowDefinition Height="*" />

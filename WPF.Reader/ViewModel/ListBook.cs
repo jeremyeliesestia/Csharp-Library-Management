@@ -44,10 +44,9 @@ namespace WPF.Reader.ViewModel
             }
         }
 
-
-        public ObservableCollection<Book> Books => Ioc.Default.GetRequiredService<LibraryService>().Books;
-
         public int CountBooks => Books.Count;
+
+
 
         public ICommand GoToDetail { get; set; }
         public ICommand GoToText { get; set; }
@@ -55,6 +54,9 @@ namespace WPF.Reader.ViewModel
         
 
         public ObservableCollection<Genre> Genres => Ioc.Default.GetRequiredService<LibraryService>().Genres;
+        public ObservableCollection<BookWrapper> Books => Ioc.Default.GetRequiredService<LibraryService>().Books;
+
+
 
         public ListBook()
         {

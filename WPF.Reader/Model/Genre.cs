@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace WPF.Reader.Model
 {
-    public class Genre
-    {
+    //public class Genre
+    //{
         
-        public int Id { get; set; }
+    //    //public int Id { get; set; }
 
-        public string Nom { get; set; }
+    //    //public string Nom { get; set; }
 
-    }
+    //}
 }

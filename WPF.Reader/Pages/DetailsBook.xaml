@@ -10,7 +10,7 @@
       d:DataContext="{d:DesignInstance Type=vm:InDesignDetailsBook, d:IsDesignTimeCreatable=True}"
       Title="DetailsBook">
 
-    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FF372BB4">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
