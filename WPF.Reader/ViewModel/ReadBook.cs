@@ -7,6 +7,18 @@ namespace WPF.Reader.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public Book CurrentBook { get; init; }
+
+        public ReadBook(Book book)
+        {
+            CurrentBook = book;
+        }
+
+        public ReadBook()
+        {
+        }
+
+
         // A vous de jouer maintenant
     }
 

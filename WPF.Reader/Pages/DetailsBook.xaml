@@ -1,4 +1,4 @@
-﻿<Page x:Class="WPF.Reader.Pages.DetailsBook"
+<Page x:Class="WPF.Reader.Pages.DetailsBook"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -10,13 +10,26 @@
       d:DataContext="{d:DesignInstance Type=vm:InDesignDetailsBook, d:IsDesignTimeCreatable=True}"
       Title="DetailsBook">
 
-    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="#FF372BB4">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!-- il faut afficher les information du livre: Nom, Auteur, Prix, Genres-->
         <!-- Mais pas le contenu ! -->
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding CurrentBook.Id}"/>
+                        <TextBlock Text="{Binding CurrentBook.Nom}"/>
+                        <TextBlock Text="{Binding CurrentBook.Contenu}"/>
+                        <TextBlock Text="{Binding CurrentBook.Genre}"/>
+                        <TextBlock Text="{Binding CurrentBook.Prix}"/>
+                    </StackPanel>
+ 
+
+
+
+
         <!-- N'oublier pas le bouton pour aller lire le livre. La commande ReadCommand est faite pour ca ! -->
     </Grid>
 </Page>

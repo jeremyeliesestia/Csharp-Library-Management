@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using System.ComponentModel;
 using System.Windows.Input;
 using WPF.Reader.Model;
+using WPF.Reader.Service;
 
 namespace WPF.Reader.ViewModel
 {
@@ -17,6 +19,16 @@ namespace WPF.Reader.ViewModel
             CurrentBook = book;
         }
     }
+
+
+
+
+
+
+
+
+
+
 
     /* Cette classe sert juste a afficher des donnée de test dans le designer */
     public class InDesignDetailsBook : DetailsBook

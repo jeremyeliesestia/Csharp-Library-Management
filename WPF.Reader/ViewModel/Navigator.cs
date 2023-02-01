@@ -29,5 +29,33 @@ namespace WPF.Reader.ViewModel
             }
             service.Navigate<ListBook>();
         });
+
+        public ICommand GoToReadBook { get; init; } = new RelayCommand(x => {
+            var service = Ioc.Default.GetRequiredService<INavigationService>();
+            if (service.Frame.CanGoBack)
+            {
+                service.Frame.RemoveBackEntry();
+                var entry = service.Frame.RemoveBackEntry();
+                while (entry != null)
+                {
+                    entry = service.Frame.RemoveBackEntry();
+                }
+            }
+            service.Navigate<DetailsBook>();
+        });
+
+        public ICommand GoToListGenre { get; init; } = new RelayCommand(x => {
+            var service = Ioc.Default.GetRequiredService<INavigationService>();
+            if (service.Frame.CanGoBack)
+            {
+                service.Frame.RemoveBackEntry();
+                var entry = service.Frame.RemoveBackEntry();
+                while (entry != null)
+                {
+                    entry = service.Frame.RemoveBackEntry();
+                }
+            }
+            service.Navigate<ListBook>();
+        });
     }
 }

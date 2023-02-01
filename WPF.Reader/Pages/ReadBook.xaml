@@ -12,13 +12,26 @@
     <Page.Resources>
         <vm:Navigator x:Key="navigator" />
     </Page.Resources>
-    <Grid>
+    <Grid Background="#FFB7B82D">
         <Grid.RowDefinitions>
             <RowDefinition Height="80" />
             <RowDefinition Height="*" />
             <RowDefinition Height="80" />
         </Grid.RowDefinitions>
         <!-- On aimerais bien avoir le tire du livre en entête -->
+        <TextBlock>TEST3</TextBlock>
+
+
+
+
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding CurrentBook.Contenu}"/>
+                    </StackPanel>
+
+
+
+
 
         <!-- Ainsi que le contenu du livre ! -->
         

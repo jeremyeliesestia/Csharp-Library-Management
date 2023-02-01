@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using System.Windows;
 
 namespace WPF.Reader
 {
@@ -11,5 +12,6 @@ namespace WPF.Reader
         {
             InitializeComponent();
         }
+
     }
 }
