@@ -13,7 +13,7 @@
 
 .element-list{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     justify-items: center;
     align-items: center;
     margin-bottom:25px;
@@ -64,6 +64,7 @@ p{
             <h3>PRIX</h3>
             <h3>GENRES</h3>
             <h3>SUPPRESSION</h3>
+            <h3>MODIFIER</h3>
         </div>
 
 
@@ -91,7 +92,7 @@ p{
                 </form>
                 <form asp-action="Update" asp-controller="book">
 
-                    <input type="submit" value="Update" style="width: 100%; margin-top: 50px" />
+                    <input type="submit" value="Update" style=" background-color: #f9c7c7;Width: 100px;border: none;border-radius: 50px;width: 100px;height: 25px;" />
                     <input type="hidden" value="@book.Id" name="IdUpdate"/>
                  
                    
