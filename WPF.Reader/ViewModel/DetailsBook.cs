@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using System.ComponentModel;
 using System.Windows.Input;
 using WPF.Reader.Model;
+using WPF.Reader.Service;
 
 namespace WPF.Reader.ViewModel
 {
@@ -15,6 +17,19 @@ namespace WPF.Reader.ViewModel
         public DetailsBook(Book book)
         {
             CurrentBook = book;
+        }
+
+        public Book selectedBook
+        {
+            get
+            {
+                return selectedBook;
+            }
+            set
+            {
+                selectedBook = value;
+                //Ioc.Default.GetRequiredService<LibraryService>().DisplayBookDetails(selectedBook);
+            }
         }
     }
 

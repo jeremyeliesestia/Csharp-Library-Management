@@ -12,4 +12,5 @@ namespace WPF.Reader
             InitializeComponent();
         }
     }
+
 }

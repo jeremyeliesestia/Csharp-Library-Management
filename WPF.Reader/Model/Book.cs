@@ -15,7 +15,15 @@ using System.Windows.Input;
 namespace WPF.Reader.Model
 {
     // A vous de completer ce qu'est un Livre !!
+    /*
     public class Book
     {
-    }
+        // Mettez ici les propriété de votre livre: Nom, Autheur, Prix, Contenu et Genres associés
+        public int Id { get; set; }
+        public string Author { get; set; }
+        public string Name { get; set; }  
+        public float Price { get; set; }
+        public string Content { get; set; }
+        public List<Genre> Genres { get; set; }
+    }*/
 }

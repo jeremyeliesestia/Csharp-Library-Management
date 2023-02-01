@@ -11,6 +11,14 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ListBooks">
     <StackPanel>
+        <ComboBox x:Name="cbBooks" SelectedValue="{Binding SelectedGenre}" Width="100" ItemsSource="{Binding Genres}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding  Nom}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+  
         <!-- 
             A vous de créer la liste avec le bon binding. Une <ListBox> fera l'affaire 
             La propriété ItemsSource doit pointé vers la propiété Books de votre dataContext actuelle 
