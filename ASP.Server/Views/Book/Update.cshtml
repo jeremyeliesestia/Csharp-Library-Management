@@ -1,0 +1,114 @@
+﻿@using ASP.Server.Controllers
+@model CreateBookModel
+@{
+    ViewData["Title"] = "Update a book";
+}
+<style>
+    .input-item {
+        font-family: 'Century Gothic';
+        font-size: 25px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    input, textarea, select {
+        flex-basis: 50%;
+        border: none;
+        background-color: #e9e9e9;
+    }
+
+    label {
+        flex-basis: 10%;
+    }
+
+    .input-Title {
+        font-family: 'Century Gothic';
+        margin: 0px;
+        padding: 0px;
+    }
+
+    h1 {
+        font-family: 'Century Gothic';
+        letter-spacing: 2px;
+        margin: 45px;
+    }
+
+    .input-Text {
+        font-family: 'Century Gothic';
+        font-size: 15px;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .contouring {
+        padding-left: 10px;
+        background-color: #e9e9e9;
+        border-radius: 50px;
+        width: 250px;
+        height: 40px;
+    }
+
+</style>
+
+
+<div>
+
+    <div style="text-align: center;">
+        <h1>MODIFIER LE LIVRE</h1>
+    </div>
+
+</div>
+
+<div style="width:50%;margin:auto;">
+    <!-- Voici une facon de faire, mais ce n'est pas la seul, a vous de jouer ! -->
+    <form asp-controller="Book" asp-action="Update">
+
+        <div class="input-item">
+            <label asp-for="Nom" class="input-Title"></label>
+            <div class ="contouring" >
+            <input asp-for="Nom" class="input-Text" />
+            </div>
+        </div>
+
+        <div class="input-item">
+            <label asp-for="Authors" class="input-Title"></label>
+            <div class="contouring">
+            <input asp-for="Authors" class="input-Text" />
+            </div>
+        </div>
+
+        <div class="input-item">
+            <label asp-for="Prix" class="input-Title"></label>
+            <div class="contouring">
+            <input asp-for="Prix" class="input-Text" />
+            </div>
+        </div>
+
+        <div class="input-item">
+            <label asp-for="Description" class="input-Title"></label>
+            <div class="contouring">
+            <input asp-for="Description" class="input-Text" />
+            </div>
+        </div>
+
+        <div class="input-item">
+            <label asp-for="Genres" class="input-Title"></label>
+            <div>
+            <!--Si la page rend une erreur a cette ligne, c'est que vous n'avez pas envoyé la liste des genres dans le Controller !!! ! -->
+                <select asp-for="Genres" asp-items="@(new SelectList(Model.AllGenres,"Id","Nom"))" class="input-Text" style="width: 250px;height: 100px;">
+            </select>
+            </div>
+
+        </div>
+
+        <div style="display: flex;width: 100%;height: 200%;justify-content: space-around;margin-top: 30px;">
+            <input type="submit" value="Modifier le livre" style="font-family: 'Century Gothic';background-color: #c7f9c8;Width: 100px;border: none;border-radius: 50px;height: 35px;" />
+            <input asp-for=Id type="hidden" value="@Model.Id"/>
+        </div>
+
+    </form>
+
+</div>

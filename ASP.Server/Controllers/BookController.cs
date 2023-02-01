@@ -9,6 +9,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Runtime.CompilerServices;
+using DocumentFormat.OpenXml.Wordprocessing;
+using DocumentFormat.OpenXml.Drawing.Charts;
 
 namespace ASP.Server.Controllers
 {
@@ -17,7 +19,7 @@ namespace ASP.Server.Controllers
         [Required]
         [Display(Name = "Nom")]
         public String Nom { get; set; }
-
+        public int Id { get; set; }
         //---------------------------------------------------
         // Ajouter ici tous les champ que l'utilisateur devra remplir pour ajouter un livre
         //Louis---------------------------------------------
@@ -55,7 +57,7 @@ namespace ASP.Server.Controllers
             //-----------------------
            List<Book> books = libraryDbContext.Books.Include(Book => Book.Genre).ToList();
            return View(books);
-            //Louis-----------------------
+            //Louis------------------
         }
 
         public ActionResult<CreateBookModel> Create(CreateBookModel book)
@@ -70,7 +72,7 @@ namespace ASP.Server.Controllers
                 libraryDbContext.SaveChanges();
             }
 
-            // Il faut interoger la base pour récupérer tous les genres, pour que l'utilisateur puisse les slécétionné
+            // Il faut interoger la base pour récupérer tous les genres, pour que l'utilisateur puisse les sélecétionné
             return View(new CreateBookModel() { AllGenres = libraryDbContext.Genre.ToList() } );
         }
 
@@ -82,6 +84,30 @@ namespace ASP.Server.Controllers
             libraryDbContext.SaveChanges();
 
             return RedirectToAction(nameof(List));
+        }
+
+        public ActionResult<CreateBookModel> Update(CreateBookModel upbook, int IdUpdate)
+        {
+
+           Book bookToUpdate = libraryDbContext.Books.Include(b => b.Genre).FirstOrDefault(book => book.Id ==( upbook.Id!=0 ? upbook.Id:  IdUpdate));
+           if (bookToUpdate != null && ModelState.IsValid)
+           {
+                bookToUpdate.Id = upbook.Id;
+                bookToUpdate.Nom =  upbook.Nom;
+                bookToUpdate.Authors = upbook.Authors;
+                bookToUpdate.Contenu = upbook.Description ;
+                bookToUpdate.Prix = upbook.Prix;
+                bookToUpdate.Genre.Clear();
+
+                List<Genre> genres = libraryDbContext.Genre.Where(genre => upbook.Genres.Contains(genre.Id)).ToList();
+                bookToUpdate.Genre.AddRange(genres);
+
+                libraryDbContext.Books.Update(bookToUpdate);
+                libraryDbContext.SaveChanges();
+                return RedirectToAction(nameof(List));
+
+            }
+            return View(new CreateBookModel { AllGenres = libraryDbContext.Genre.ToList(), Id= bookToUpdate.Id, Authors= bookToUpdate.Authors, Description= bookToUpdate.Contenu, Prix= bookToUpdate.Prix, Nom= bookToUpdate.Nom});
         }
 
 

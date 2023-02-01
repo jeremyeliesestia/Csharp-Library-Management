@@ -18,6 +18,19 @@ namespace WPF.Reader.ViewModel
         {
             CurrentBook = book;
         }
+
+        public Book selectedBook
+        {
+            get
+            {
+                return selectedBook;
+            }
+            set
+            {
+                selectedBook = value;
+                //Ioc.Default.GetRequiredService<LibraryService>().DisplayBookDetails(selectedBook);
+            }
+        }
     }
 
 

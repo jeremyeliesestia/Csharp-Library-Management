@@ -10,11 +10,41 @@ namespace WPF.Reader.ViewModel
 {
     internal class ListBook : INotifyPropertyChanged
     {
+        private Genre selectedGenre;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ICommand ItemSelectedCommand { get; set; }
 
         // n'oublier pas faire de faire le binding dans ListBook.xaml !!!!
+
+        public Genre SelectedGenre
+        {
+            get
+            {
+                return selectedGenre;
+            }
+            set
+            {
+                selectedGenre = value;
+                //Ioc.Default.GetRequiredService<LibraryService>().UpdateBooksByGenre(selectedGenre);
+            }
+        }
+        
+        public int NFisrtBooks
+        {
+            get
+            {
+                return NFisrtBooks;
+            }
+            set
+            {
+                NFisrtBooks = value;
+                //Ioc.Default.GetRequiredService<LibraryService>().DisplayNFirstBooks(NFisrtBooks);
+            }
+        }
+
+
         public ObservableCollection<Book> Books => Ioc.Default.GetRequiredService<LibraryService>().Books;
 
         public int CountBooks => Books.Count;
@@ -23,6 +53,8 @@ namespace WPF.Reader.ViewModel
         public ICommand GoToText { get; set; }
         
         
+
+        public ObservableCollection<Genre> Genres => Ioc.Default.GetRequiredService<LibraryService>().Genres;
 
         public ListBook()
         {
@@ -41,5 +73,7 @@ namespace WPF.Reader.ViewModel
                 Ioc.Default.GetRequiredService<INavigationService>().Navigate<ReadBook>(book);
             });
         }
+
+
     }
 }
