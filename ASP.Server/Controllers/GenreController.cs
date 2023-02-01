@@ -37,7 +37,7 @@ namespace ASP.Server.Controllers
         public ActionResult<IEnumerable<Genre>> List()
         {
             // récupérer les livres dans la base de donées pour qu'elle puisse être affiché
-            List<Genre> ListGenres = libraryDbContext.Genre.ToList();
+            List<Genre> ListGenres = libraryDbContext.Genre.Include(genre => genre.Book).ToList();
             return View(ListGenres);
         }
 
