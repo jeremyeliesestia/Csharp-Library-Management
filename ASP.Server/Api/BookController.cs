@@ -80,11 +80,11 @@ namespace ASP.Server.Api
         {
 
 
-            IQueryable<Book> bookQuery = libraryDbContext.Books.Skip(offset).Take(limit);
+            IQueryable<Book> bookQuery = libraryDbContext.Books.Skip(offset).Take(limit).Include(Book => Book.Genre);
 
             if (Id_Genre != null && Id_Genre.Any())
             {
-                bookQuery = bookQuery.Include(Book => Book.Genre).Where(Books => Books.Genre.Intersect(libraryDbContext.Genre.Where(Genre => Id_Genre.Contains(Genre.Id))).Any());
+                bookQuery = bookQuery.Where(Books => Books.Genre.Intersect(libraryDbContext.Genre.Where(Genre => Id_Genre.Contains(Genre.Id))).Any());
             }
 
 

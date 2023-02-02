@@ -19,15 +19,14 @@
             <RowDefinition Height="80" />
         </Grid.RowDefinitions>
         <!-- On aimerais bien avoir le tire du livre en entête -->
-        <TextBlock>TEST3</TextBlock>
 
 
 
 
 
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding CurrentBook.Contenu}"/>
-                    </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <TextBlock Text="{Binding CurrentBook.Contenu}"/>
+            </StackPanel>
 
 
 

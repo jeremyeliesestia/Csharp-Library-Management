@@ -25,28 +25,32 @@
             Command="{Binding DataContext.ItemSelectedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
             CommandParameter="{Binding .}"
         -->
-        
-        <TextBlock>TEST</TextBlock>
-        
-        <ListBox ItemsSource="{Binding Books}" x:Name="list">
+
+        <ListBox ItemsSource="{Binding Books}" x:Name="list" FontFamily="Century Gothic" BorderBrush="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
 
             <ListBox.ItemTemplate>
                 
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding Id}"/>
-                        <TextBlock Text="{Binding Nom}"/>
-                        <Button Width="50" Content="{Binding Id}" Command="{Binding ElementName=list, Path=DataContext.GoToDetail}" CommandParameter="{Binding .}"/>
-                        <Button Width="50" Content="{Binding Id}" Command="{Binding ElementName=list, Path=DataContext.GoToText}" CommandParameter="{Binding .}"/>
+                <DataTemplate >
+
+                    <StackPanel Margin="5,5,5,5" Orientation="Horizontal">
+
+                        <TextBlock Margin="5,5,5,5" Padding="5,5,5,5" Text="{Binding Nom}"/>
+                        <TextBlock Margin="5,5,5,5" Padding="5,5,5,5" Text="{Binding Authors}"/>
+
+
+                        <Border Margin="5,5,5,5" Padding="5,5,5,5" DockPanel.Dock="Top" BorderThickness="0" CornerRadius="12.5" HorizontalAlignment="Center"  Background="#f7c7f9">
+                            <Button Background="#f7c7f9" BorderThickness="0" Width="50" Content="Détails" Command="{Binding ElementName=list, Path=DataContext.GoToDetail}" CommandParameter="{Binding .}" UseLayoutRounding="False"/>
+                        </Border>
+
+
                     </StackPanel>
+                    
                 </DataTemplate>
 
             </ListBox.ItemTemplate>
             
         </ListBox>
-        <Label Content="{Binding CountBooks}" />
-
-        <!--  -->
+        
 
     </StackPanel>
 </Page>

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using WPF.Reader.Model;
@@ -30,13 +31,18 @@ namespace WPF.Reader
                 .BuildServiceProvider());
 
 
-            new LibraryService().Init();
 
-            Dispatcher.BeginInvoke(new Action(() =>
-            {
-                Ioc.Default.GetRequiredService<INavigationService>().Navigate<ListBook>();
+            Thread newThread = new Thread(new ThreadStart(LongRunningMethod));
+            newThread.Start();
 
-            }));
+            Ioc.Default.GetRequiredService<INavigationService>().Navigate<ListBook>();
+            
+
+        }
+
+        private static void LongRunningMethod()
+        {
+            Ioc.Default.GetRequiredService<LibraryService>().Init();
 
         }
     }

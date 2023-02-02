@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Threading;
 using System.Xml.Linq;
 using WPF.Reader.Api;
 using WPF.Reader.Model;
@@ -62,16 +63,33 @@ namespace WPF.Reader.Service
             InvertList.Reverse();
             List<BookWrapper> List = InvertList;
 
-            foreach (var x in List)
+            App.Current.Dispatcher.Invoke(new Action(() =>
             {
-                //Books.Add(x);
-                Books.Add(new BookWrapper() { Id = x.Id, Authors = x.Authors, Nom = x.Nom, Prix = x.Prix, Bw = x.Bw, Genre = x.Genre  });
-            }
-            
-            Console.WriteLine(Books.Count);
+                foreach (var x in List)
+                {
+                    Books.Add(x);
+                }
 
+            }));
+
+ 
             return List;
         }
+
+
+
+
+
+
+        public Book GetBook(BookWrapper bookWrapper)
+        {
+            Book book = new BookApi().BookGetBook(numeroLivre: bookWrapper.Id); 
+            return book;
+        }
+
+
+
+
 
         public List<Genre> GetAllGenres()
         {

@@ -10,13 +10,18 @@ namespace WPF.Reader.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ICommand ReadCommand { get; init; } = new RelayCommand(x => { /* A vous de définir la commande */ });
+        public ICommand GoToText { get; set; }
 
         // n'oublier pas faire de faire le binding dans DetailsBook.xaml !!!!
-        public Book CurrentBook { get; init; }
+        public BookWrapper CurrentBook { get; init; }
 
-        public DetailsBook(Book book)
+        public DetailsBook(BookWrapper book)
         {
             CurrentBook = book;
+            GoToText = new RelayCommand(book =>
+            {
+                Ioc.Default.GetRequiredService<INavigationService>().Navigate<ReadBook>(CurrentBook);
+            });
         }
 
         public Book selectedBook
@@ -46,6 +51,6 @@ namespace WPF.Reader.ViewModel
     /* Cette classe sert juste a afficher des donnée de test dans le designer */
     public class InDesignDetailsBook : DetailsBook
     {
-        public InDesignDetailsBook() : base(new Book() /*{ Title = "Test Book" }*/) { }
+        public InDesignDetailsBook() : base(new BookWrapper() /*{ Title = "Test Book" }*/) { }
     }
 }
