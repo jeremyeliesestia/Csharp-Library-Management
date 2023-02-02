@@ -11,31 +11,32 @@
       Title="DetailsBook">
 
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="White">
+        
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="141" />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <!-- il faut afficher les information du livre: Nom, Auteur, Prix, Genres-->
         <!-- Mais pas le contenu ! -->
-        
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding CurrentBook.Id}"/>
-                <TextBlock Text="{Binding CurrentBook.Nom}"/>
-                <ItemsControl ItemsSource="{Binding CurrentBook.Genre}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Nom}"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <TextBlock Text="{Binding CurrentBook.Prix}"/>
-                <TextBlock Text="{Binding CurrentBook.Authors}"/>
-                
-                <Border Margin="5,5,5,5" Padding="5,5,5,5" DockPanel.Dock="Top" BorderThickness="0" CornerRadius="12.5" HorizontalAlignment="Center" Background="#c7f9c8">
-                    <Button Background="#c7f9c8" BorderThickness="0" Width="50" Content="Lire" Command="{Binding GoToText}"/>
-                </Border>
-                
-            </StackPanel>       
+
+        <StackPanel Orientation="Horizontal" Margin="20,0,20,0" VerticalAlignment="Center" Height="40">
+            <TextBlock Margin="5,5,5,5" Padding="5,5,5,5" FontFamily="Century Gothic" Text="{Binding CurrentBook.Id}"/>
+            <TextBlock Margin="5,5,5,5" Padding="5,5,5,5" FontFamily="Century Gothic" Text="{Binding CurrentBook.Nom}"/>
+            <ItemsControl ItemsSource="{Binding CurrentBook.Genre}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Padding="5,5,5,5" FontFamily="Century Gothic" Text="{Binding Nom}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <TextBlock Margin="5,5,5,5" Padding="5,5,5,5" FontFamily="Century Gothic" Text="{Binding CurrentBook.Prix}"/>
+            <TextBlock Margin="5,5,5,5" Padding="5,5,5,5" FontFamily="Century Gothic" Text="{Binding CurrentBook.Authors}"/>
+
+            <Border Margin="5,5,5,5" DockPanel.Dock="Top" BorderThickness="0" CornerRadius="15" HorizontalAlignment="Center" Background="#c7f9c8" Width="49.3" Height="30">
+                <Button FontFamily="Century Gothic" Background="#c7f9c8" BorderThickness="0" Width="30" Content="Lire" Command="{Binding GoToText}" Height="20"/>
+            </Border>
+
+        </StackPanel>
 
         <!-- N'oublier pas le bouton pour aller lire le livre. La commande ReadCommand est faite pour ca ! -->
     </Grid>

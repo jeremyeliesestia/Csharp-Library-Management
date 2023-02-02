@@ -76,27 +76,19 @@ namespace WPF.Reader.Service
             return List;
         }
 
-
-
-
-
-
         public Book GetBook(BookWrapper bookWrapper)
         {
             Book book = new BookApi().BookGetBook(numeroLivre: bookWrapper.Id); 
             return book;
         }
 
-
-
-
-
         public List<Genre> GetAllGenres()
         {
+
             List<Genre> genres = new BookApi().BookGetGenres();
             foreach (var x in genres)
             {
-                Genres.Add(x);
+                Genres.Add(new Genre { Id=x.Id, Nom=x.Nom});
             }
             return genres;
         }

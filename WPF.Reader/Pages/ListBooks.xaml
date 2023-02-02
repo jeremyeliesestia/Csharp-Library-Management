@@ -12,24 +12,14 @@
       Title="ListBooks">
     <StackPanel Background="White">
 
-        <!-- 
-            A vous de créer la liste avec le bon binding. Une <ListBox> fera l'affaire 
-            La propriété ItemsSource doit pointé vers la propiété Books de votre dataContext actuelle 
-            Utilisé ListBox.ItemTemplate pour définir comment sont affiché vos items
-            <ListBox.ItemTemplate>
-        
-            A vous de faire afficher les champs que vous voulez afficher pour savoir quel sont les livre disponible
-            <TextBlock Text="{Binding MyPropertyOnMyObjectBook}"/>
-            N'oublier pas non plus de rajouter un boutton quelque part pour allez voir les détails de votre livre
-            Les propriété Command et CommandParameter pourrons vous aider ! 
-            Command="{Binding DataContext.ItemSelectedCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Page}}}" 
-            CommandParameter="{Binding .}"
-        -->
+
+
+
 
         <ListBox ItemsSource="{Binding Books}" x:Name="list" FontFamily="Century Gothic" BorderBrush="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
 
             <ListBox.ItemTemplate>
-                
+
                 <DataTemplate >
 
                     <StackPanel Margin="5,5,5,5" Orientation="Horizontal">
@@ -44,13 +34,23 @@
 
 
                     </StackPanel>
-                    
+
                 </DataTemplate>
 
             </ListBox.ItemTemplate>
-            
+
         </ListBox>
-        
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="5,5,5,5" Text="Genres:"/>
+            <ListBox ItemsSource="{Binding Genres}" FontFamily="Century Gothic" BorderBrush="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Nom}" Margin="5"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
 
     </StackPanel>
 </Page>
