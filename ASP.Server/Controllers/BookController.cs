@@ -20,9 +20,7 @@ namespace ASP.Server.Controllers
         [Display(Name = "Nom")]
         public String Nom { get; set; }
         public int Id { get; set; }
-        //---------------------------------------------------
-        // Ajouter ici tous les champ que l'utilisateur devra remplir pour ajouter un livre
-        //Louis---------------------------------------------
+
         
         public String Authors { get; set; }
 

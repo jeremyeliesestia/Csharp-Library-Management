@@ -18,10 +18,5 @@ namespace ASP.Server.Model
         public string Contenu { get; set; }
         public List<Genre> Genre { get; set; }
 
-
-        //-------------------------------------------------------
-
-        // Mettez ici les propriété de votre livre: Nom, Autheur, Prix, Contenu et Genres associés
-        // N'oublier pas qu'un livre peut avoir plusieur genres
     }
 }

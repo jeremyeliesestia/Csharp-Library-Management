@@ -64,7 +64,6 @@
 </div>
 
 <div style="width:50%;margin:auto;">
-    <!-- Voici une facon de faire, mais ce n'est pas la seul, a vous de jouer ! -->
     <form asp-controller="Book" asp-action="Update">
 
         <div class="input-item">
@@ -91,14 +90,13 @@
         <div class="input-item">
             <label asp-for="Description" class="input-Title"></label>
             <div class="contouring">
-            <input asp-for="Description" class="input-Text" />
+            <textarea asp-for="Description" class="input-TextBig"></textarea>
             </div>
         </div>
 
         <div class="input-item">
             <label asp-for="Genres" class="input-Title"></label>
             <div>
-            <!--Si la page rend une erreur a cette ligne, c'est que vous n'avez pas envoyé la liste des genres dans le Controller !!! ! -->
                 <select asp-for="Genres" asp-items="@(new SelectList(Model.AllGenres,"Id","Nom"))" class="input-Text" style="width: 250px;height: 100px;">
             </select>
             </div>

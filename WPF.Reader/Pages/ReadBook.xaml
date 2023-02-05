@@ -22,8 +22,8 @@
         </Grid.RowDefinitions>
 
 
-            <StackPanel Orientation="Horizontal" Grid.Row="0">
-                <TextBlock TextWrapping="Wrap" Text="{Binding CurrentBook.Contenu}"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Height="80" Width="700">
+            <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding CurrentBook.Contenu}" Width="700" Height="80"/>
             </StackPanel>
 
 

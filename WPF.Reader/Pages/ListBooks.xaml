@@ -42,7 +42,7 @@
         </ListBox>
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Margin="5,5,5,5" Text="Genres:"/>
+            <TextBlock Margin="15,20,5,20" Text="Liste des Genres actuellement disponible:" FontWeight="Bold"/>
             <ListBox ItemsSource="{Binding Genres}" FontFamily="Century Gothic" BorderBrush="White" BorderThickness="0,0,0,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
